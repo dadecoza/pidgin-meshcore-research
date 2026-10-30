@@ -1,0 +1,910 @@
+HISTORICAL DEVELOPMENT OUTPUT — NOT CURRENT RELEASE CERTIFICATION
+Plugin: multiple unversioned 2026-10-30/31 checkpoints, no intermediate Git SHAs.
+Firmware reference: 81dbae592ffad40b4212bc0b37e82b38da08f4bc, protocol 14.
+No RF in these test runs. See REVISIONS.md and validation/PUBLICATION.md for
+revision-specific current results. Original host/profile/capture files excluded.
+
+Validation recorded 2026-10-30 after account-label and companion display-name changes.
+
+$ make test
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -o tests/test-core tests/test-core.c src/serial.c src/meshcore.c -lpurple -lglib-2.0 -lutil -Wl,--wrap=write
+./tests/test-core
+TAP version 14
+# random seed: R02S7dd7f2b84f33d346c54e6ec5e09d9052
+1..12
+# Start of core tests
+ok 1 /core/messaging
+# slow test /core/messaging executed in 2.21 secs
+ok 2 /core/ambiguous
+ok 3 /core/malformed
+ok 4 /core/unplug
+ok 5 /core/timeout-late
+# slow test /core/timeout-late executed in 11.94 secs
+ok 6 /core/busy
+ok 7 /core/unsupported
+ok 8 /core/queue-bound
+ok 9 /core/malformed-record
+ok 10 /core/contact-change
+ok 11 /core/stale-initial-reply
+# End of core tests
+# Start of serial tests
+ok 12 /serial/partial-coalesced
+# End of serial tests
+./tests/test-purple
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:06:17.796380752] [86974]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:06:17.801782598] [86986]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+
+$ make memcheck
+valgrind --error-exitcode=1 --leak-check=full --errors-for-leak-kinds=definite ./tests/test-core
+==87077== Memcheck, a memory error detector
+==87077== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==87077== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==87077== Command: ./tests/test-core
+==87077==
+TAP version 14
+# random seed: R02Se0204531a1b2e2e295f4ceabc1f98619
+1..12
+# Start of core tests
+ok 1 /core/messaging
+# slow test /core/messaging executed in 2.38 secs
+ok 2 /core/ambiguous
+ok 3 /core/malformed
+ok 4 /core/unplug
+ok 5 /core/timeout-late
+# slow test /core/timeout-late executed in 11.98 secs
+ok 6 /core/busy
+ok 7 /core/unsupported
+ok 8 /core/queue-bound
+ok 9 /core/malformed-record
+ok 10 /core/contact-change
+ok 11 /core/stale-initial-reply
+# End of core tests
+# Start of serial tests
+ok 12 /serial/partial-coalesced
+# End of serial tests
+==87077==
+==87077== HEAP SUMMARY:
+==87077==     in use at exit: 24,478 bytes in 32 blocks
+==87077==   total heap usage: 6,626 allocs, 6,594 frees, 548,725 bytes allocated
+==87077==
+==87077== LEAK SUMMARY:
+==87077==    definitely lost: 0 bytes in 0 blocks
+==87077==    indirectly lost: 0 bytes in 0 blocks
+==87077==      possibly lost: 0 bytes in 0 blocks
+==87077==    still reachable: 24,478 bytes in 32 blocks
+==87077==         suppressed: 0 bytes in 0 blocks
+==87077== Reachable blocks (those to which a pointer was found) are not shown.
+==87077== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==87077==
+==87077== For lists of detected and suppressed errors, rerun with: -s
+==87077== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+Automatic buddy-list import follow-up:
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -shared -o pidgin-meshcore.so src/plugin.c src/serial.c src/meshcore.c -lpurple -lglib-2.0
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -o tests/test-purple tests/test-purple.c -lpurple -lglib-2.0 -lutil
+./tests/test-core
+TAP version 14
+# random seed: R02S6d99032567d088854e4a67fd8fa71a21
+1..12
+# Start of core tests
+ok 1 /core/messaging
+# slow test /core/messaging executed in 2.21 secs
+ok 2 /core/ambiguous
+ok 3 /core/malformed
+ok 4 /core/unplug
+ok 5 /core/timeout-late
+# slow test /core/timeout-late executed in 11.94 secs
+ok 6 /core/busy
+ok 7 /core/unsupported
+ok 8 /core/queue-bound
+ok 9 /core/malformed-record
+ok 10 /core/contact-change
+ok 11 /core/stale-initial-reply
+# End of core tests
+# Start of serial tests
+ok 12 /serial/partial-coalesced
+# End of serial tests
+./tests/test-purple
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:15:08.133901273] [93065]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:15:08.141614338] [93070]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+
+Focused integration with user-created chat preservation:
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:15:35.494159103] [93385]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:15:35.505950587] [93411]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+
+Import integration Valgrind (leak checking disabled for libpurple/system plugins):
+==94730== Memcheck, a memory error detector
+==94730== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==94730== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==94730== Command: ./tests/test-purple
+==94730==
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:17:11.506284094] [94730]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:17:11.922357776] [94858]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+==94730== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+==94730==
+==94730== HEAP SUMMARY:
+==94730==     in use at exit: 4,580,421 bytes in 35,492 blocks
+==94730==   total heap usage: 145,316 allocs, 109,824 frees, 31,713,947 bytes allocated
+==94730==
+==94730== For a detailed leak analysis, rerun with: --leak-check=full
+==94730==
+==94730== For lists of detected and suppressed errors, rerun with: -s
+==94730== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+Recent-heard presence validation:
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -o tests/test-core tests/test-core.c src/serial.c src/meshcore.c -lpurple -lglib-2.0 -lutil -Wl,--wrap=write
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -o tests/test-purple tests/test-purple.c -lpurple -lglib-2.0 -lutil
+./tests/test-core
+TAP version 14
+# random seed: R02S64e88373213db4ae2f610fb053aeaf2d
+1..12
+# Start of core tests
+ok 1 /core/messaging
+# slow test /core/messaging executed in 2.22 secs
+ok 2 /core/ambiguous
+ok 3 /core/malformed
+ok 4 /core/unplug
+ok 5 /core/timeout-late
+# slow test /core/timeout-late executed in 11.94 secs
+ok 6 /core/busy
+ok 7 /core/unsupported
+ok 8 /core/queue-bound
+ok 9 /core/malformed-record
+ok 10 /core/contact-change
+# slow test /core/contact-change executed in 0.61 secs
+ok 11 /core/stale-initial-reply
+# End of core tests
+# Start of serial tests
+ok 12 /serial/partial-coalesced
+# End of serial tests
+./tests/test-purple
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:23:57.713614605] [99374]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:23:57.721077447] [99379]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+
+Final presence core Valgrind:
+valgrind --error-exitcode=1 --leak-check=full --errors-for-leak-kinds=definite ./tests/test-core
+==100075== Memcheck, a memory error detector
+==100075== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==100075== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==100075== Command: ./tests/test-core
+==100075==
+TAP version 14
+# random seed: R02S4717eb20649130a442c005de2fb3f386
+1..12
+# Start of core tests
+ok 1 /core/messaging
+# slow test /core/messaging executed in 2.41 secs
+ok 2 /core/ambiguous
+ok 3 /core/malformed
+ok 4 /core/unplug
+ok 5 /core/timeout-late
+# slow test /core/timeout-late executed in 11.99 secs
+ok 6 /core/busy
+ok 7 /core/unsupported
+ok 8 /core/queue-bound
+ok 9 /core/malformed-record
+ok 10 /core/contact-change
+# slow test /core/contact-change executed in 0.66 secs
+ok 11 /core/stale-initial-reply
+# End of core tests
+# Start of serial tests
+ok 12 /serial/partial-coalesced
+# End of serial tests
+==100075==
+==100075== HEAP SUMMARY:
+==100075==     in use at exit: 24,478 bytes in 32 blocks
+==100075==   total heap usage: 6,788 allocs, 6,756 frees, 554,308 bytes allocated
+==100075==
+==100075== LEAK SUMMARY:
+==100075==    definitely lost: 0 bytes in 0 blocks
+==100075==    indirectly lost: 0 bytes in 0 blocks
+==100075==      possibly lost: 0 bytes in 0 blocks
+==100075==    still reachable: 24,478 bytes in 32 blocks
+==100075==         suppressed: 0 bytes in 0 blocks
+==100075== Reachable blocks (those to which a pointer was found) are not shown.
+==100075== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==100075==
+==100075== For lists of detected and suppressed errors, rerun with: -s
+==100075== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+Final presence integration Valgrind (libpurple/system leak checking disabled):
+==100099== Memcheck, a memory error detector
+==100099== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==100099== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==100099== Command: ./tests/test-purple
+==100099==
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:25:03.303248401] [100099]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:25:03.837345047] [100200]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+==100099== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+==100099==
+==100099== HEAP SUMMARY:
+==100099==     in use at exit: 4,572,949 bytes in 35,352 blocks
+==100099==   total heap usage: 135,825 allocs, 100,473 frees, 31,268,214 bytes allocated
+==100099==
+==100099== For a detailed leak analysis, rerun with: --leak-check=full
+==100099==
+==100099== For lists of detected and suppressed errors, rerun with: -s
+==100099== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+Broader identity-attributable traffic tests:
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -o tests/test-core tests/test-core.c src/serial.c src/meshcore.c -lpurple -lglib-2.0 -lutil -Wl,--wrap=write
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -o tests/test-purple tests/test-purple.c -lpurple -lglib-2.0 -lutil
+./tests/test-core
+TAP version 14
+# random seed: R02S0c07bc05f5b8936d95e68532ad22d325
+1..14
+# Start of core tests
+ok 1 /core/messaging
+# slow test /core/messaging executed in 2.21 secs
+ok 2 /core/ambiguous
+ok 3 /core/malformed
+ok 4 /core/unplug
+ok 5 /core/timeout-late
+# slow test /core/timeout-late executed in 11.94 secs
+ok 6 /core/busy
+ok 7 /core/unsupported
+ok 8 /core/queue-bound
+ok 9 /core/malformed-record
+ok 10 /core/contact-change
+# slow test /core/contact-change executed in 0.61 secs
+ok 11 /core/stale-initial-reply
+ok 12 /core/received-traffic-presence
+# slow test /core/received-traffic-presence executed in 0.89 secs
+ok 13 /core/ambiguous-traffic-presence
+# End of core tests
+# Start of serial tests
+ok 14 /serial/partial-coalesced
+# End of serial tests
+./tests/test-purple
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:32:51.543398600] [106055]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:32:51.548574511] [106060]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+
+Final core Valgrind:
+valgrind --error-exitcode=1 --leak-check=full --errors-for-leak-kinds=definite ./tests/test-core
+==106618== Memcheck, a memory error detector
+==106618== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==106618== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==106618== Command: ./tests/test-core
+==106618==
+TAP version 14
+# random seed: R02S8e58e4bdfa76bdfdc45eaec533df3b7c
+1..14
+# Start of core tests
+ok 1 /core/messaging
+# slow test /core/messaging executed in 2.38 secs
+ok 2 /core/ambiguous
+ok 3 /core/malformed
+ok 4 /core/unplug
+ok 5 /core/timeout-late
+# slow test /core/timeout-late executed in 11.96 secs
+ok 6 /core/busy
+ok 7 /core/unsupported
+ok 8 /core/queue-bound
+ok 9 /core/malformed-record
+ok 10 /core/contact-change
+# slow test /core/contact-change executed in 0.66 secs
+ok 11 /core/stale-initial-reply
+ok 12 /core/received-traffic-presence
+# slow test /core/received-traffic-presence executed in 0.93 secs
+ok 13 /core/ambiguous-traffic-presence
+# End of core tests
+# Start of serial tests
+ok 14 /serial/partial-coalesced
+# End of serial tests
+==106618==
+==106618== HEAP SUMMARY:
+==106618==     in use at exit: 24,478 bytes in 32 blocks
+==106618==   total heap usage: 7,671 allocs, 7,639 frees, 625,182 bytes allocated
+==106618==
+==106618== LEAK SUMMARY:
+==106618==    definitely lost: 0 bytes in 0 blocks
+==106618==    indirectly lost: 0 bytes in 0 blocks
+==106618==      possibly lost: 0 bytes in 0 blocks
+==106618==    still reachable: 24,478 bytes in 32 blocks
+==106618==         suppressed: 0 bytes in 0 blocks
+==106618== Reachable blocks (those to which a pointer was found) are not shown.
+==106618== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==106618==
+==106618== For lists of detected and suppressed errors, rerun with: -s
+==106618== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+Final integration, including activity deadline renewal, under Valgrind (system plugin leak checking disabled):
+==107765== Memcheck, a memory error detector
+==107765== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==107765== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==107765== Command: ./tests/test-purple
+==107765==
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:34:56.612866180] [107765]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:34:57.046572657] [107903]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+==107765== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+==107765==
+==107765== HEAP SUMMARY:
+==107765==     in use at exit: 4,572,949 bytes in 35,352 blocks
+==107765==   total heap usage: 136,011 allocs, 100,659 frees, 31,280,442 bytes allocated
+==107765==
+==107765== For a detailed leak analysis, rerun with: --leak-check=full
+==107765==
+==107765== For lists of detected and suppressed errors, rerun with: -s
+==107765== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+Channel sender/participant final tests:
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -shared -o pidgin-meshcore.so src/plugin.c src/serial.c src/meshcore.c -lpurple -lglib-2.0
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -o tests/test-purple tests/test-purple.c -lpurple -lglib-2.0 -lutil
+./tests/test-core
+TAP version 14
+# random seed: R02Se212965c5ea44f4bfd102d22e38270a3
+1..14
+# Start of core tests
+ok 1 /core/messaging
+# slow test /core/messaging executed in 2.22 secs
+ok 2 /core/ambiguous
+ok 3 /core/malformed
+ok 4 /core/unplug
+ok 5 /core/timeout-late
+# slow test /core/timeout-late executed in 11.94 secs
+ok 6 /core/busy
+ok 7 /core/unsupported
+ok 8 /core/queue-bound
+ok 9 /core/malformed-record
+ok 10 /core/contact-change
+# slow test /core/contact-change executed in 0.61 secs
+ok 11 /core/stale-initial-reply
+ok 12 /core/received-traffic-presence
+# slow test /core/received-traffic-presence executed in 0.89 secs
+ok 13 /core/ambiguous-traffic-presence
+# End of core tests
+# Start of serial tests
+ok 14 /serial/partial-coalesced
+# End of serial tests
+./tests/test-purple
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:44:23.818534553] [115040]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:44:23.823762072] [115046]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+
+Channel sender/participant integration under Valgrind (system leak checking disabled):
+==115847== Memcheck, a memory error detector
+==115847== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==115847== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==115847== Command: ./tests/test-purple
+==115847==
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:45:37.942491276] [115847]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:45:38.433408229] [115959]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+==115847== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+==115847==
+==115847== HEAP SUMMARY:
+==115847==     in use at exit: 4,572,774 bytes in 35,352 blocks
+==115847==   total heap usage: 137,726 allocs, 102,374 frees, 31,333,797 bytes allocated
+==115847==
+==115847== For a detailed leak analysis, rerun with: --leak-check=full
+==115847==
+==115847== For lists of detected and suppressed errors, rerun with: -s
+==115847== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+Relative last-heard label integration:
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:53:27.944224980] [121233]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:53:27.952838307] [121298]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+
+Relative last-heard labels under Valgrind (system leak checking disabled):
+==122057== Memcheck, a memory error detector
+==122057== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==122057== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==122057== Command: ./tests/test-purple
+==122057==
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[2:54:41.698632979] [122057]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[2:54:42.207356901] [122187]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+==122057== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+==122057==
+==122057== HEAP SUMMARY:
+==122057==     in use at exit: 4,572,758 bytes in 35,352 blocks
+==122057==   total heap usage: 138,072 allocs, 102,720 frees, 31,359,425 bytes allocated
+==122057==
+==122057== For a detailed leak analysis, rerun with: --leak-check=full
+==122057==
+==122057== For lists of detected and suppressed errors, rerun with: -s
+==122057== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+Channel repeat feedback tests:
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -shared -o pidgin-meshcore.so src/plugin.c src/serial.c src/meshcore.c src/repeat.c -lpurple -lglib-2.0 -lcrypto
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -DMC_REPEAT_WINDOW_SECONDS=1 -o tests/test-core tests/test-core.c src/serial.c src/meshcore.c src/repeat.c -lpurple -lglib-2.0 -lcrypto -lutil -Wl,--wrap=write -Wl,--wrap=time
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -o tests/test-purple tests/test-purple.c -lpurple -lglib-2.0 -lcrypto -lutil
+./tests/test-core
+TAP version 14
+# random seed: R02Sca654a8e0b06d5ad4bab364454d97038
+1..18
+# Start of core tests
+ok 1 /core/messaging
+# slow test /core/messaging executed in 3.27 secs
+ok 2 /core/ambiguous
+ok 3 /core/malformed
+ok 4 /core/unplug
+ok 5 /core/timeout-late
+# slow test /core/timeout-late executed in 11.94 secs
+ok 6 /core/busy
+ok 7 /core/unsupported
+ok 8 /core/queue-bound
+ok 9 /core/malformed-record
+ok 10 /core/contact-change
+# slow test /core/contact-change executed in 0.61 secs
+ok 11 /core/stale-initial-reply
+ok 12 /core/received-traffic-presence
+# slow test /core/received-traffic-presence executed in 0.90 secs
+ok 13 /core/ambiguous-traffic-presence
+# End of core tests
+# Start of serial tests
+ok 14 /serial/partial-coalesced
+# End of serial tests
+# Start of repeat tests
+ok 15 /repeat/crypto-vectors
+ok 16 /repeat/feedback
+# slow test /repeat/feedback executed in 0.65 secs
+ok 17 /repeat/silent-expiry
+# slow test /repeat/silent-expiry executed in 1.62 secs
+ok 18 /repeat/channel-key-change
+# End of repeat tests
+./tests/test-purple
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[10:21:43.366269680] [314957]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[10:21:43.375199829] [314963]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+
+Core repeat tests under Valgrind:
+valgrind --error-exitcode=1 --leak-check=full --errors-for-leak-kinds=definite ./tests/test-core
+==315696== Memcheck, a memory error detector
+==315696== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==315696== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==315696== Command: ./tests/test-core
+==315696==
+TAP version 14
+# random seed: R02S5638cd13a95119162ecc3dad78cbc6a1
+1..18
+# Start of core tests
+ok 1 /core/messaging
+# slow test /core/messaging executed in 3.98 secs
+ok 2 /core/ambiguous
+ok 3 /core/malformed
+ok 4 /core/unplug
+ok 5 /core/timeout-late
+# slow test /core/timeout-late executed in 11.97 secs
+ok 6 /core/busy
+ok 7 /core/unsupported
+ok 8 /core/queue-bound
+ok 9 /core/malformed-record
+ok 10 /core/contact-change
+# slow test /core/contact-change executed in 0.67 secs
+ok 11 /core/stale-initial-reply
+ok 12 /core/received-traffic-presence
+# slow test /core/received-traffic-presence executed in 0.94 secs
+ok 13 /core/ambiguous-traffic-presence
+# End of core tests
+# Start of serial tests
+ok 14 /serial/partial-coalesced
+# End of serial tests
+# Start of repeat tests
+ok 15 /repeat/crypto-vectors
+ok 16 /repeat/feedback
+# slow test /repeat/feedback executed in 0.69 secs
+ok 17 /repeat/silent-expiry
+# slow test /repeat/silent-expiry executed in 1.66 secs
+ok 18 /repeat/channel-key-change
+# End of repeat tests
+==315696==
+==315696== HEAP SUMMARY:
+==315696==     in use at exit: 24,534 bytes in 33 blocks
+==315696==   total heap usage: 15,009 allocs, 14,976 frees, 1,170,194 bytes allocated
+==315696==
+==315696== LEAK SUMMARY:
+==315696==    definitely lost: 0 bytes in 0 blocks
+==315696==    indirectly lost: 0 bytes in 0 blocks
+==315696==      possibly lost: 0 bytes in 0 blocks
+==315696==    still reachable: 24,534 bytes in 33 blocks
+==315696==         suppressed: 0 bytes in 0 blocks
+==315696== Reachable blocks (those to which a pointer was found) are not shown.
+==315696== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==315696==
+==315696== For lists of detected and suppressed errors, rerun with: -s
+==315696== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+libpurple integration under Valgrind (system leak checking disabled):
+==315694== Memcheck, a memory error detector
+==315694== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==315694== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==315694== Command: ./tests/test-purple
+==315694==
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[10:22:49.540254343] [315694]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[10:22:49.965326004] [315821]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+==315694== Warning: invalid file descriptor -1 in syscall close()
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+==315694==
+==315694== HEAP SUMMARY:
+==315694==     in use at exit: 4,572,161 bytes in 35,335 blocks
+==315694==   total heap usage: 126,183 allocs, 90,848 frees, 29,949,880 bytes allocated
+==315694==
+==315694== For a detailed leak analysis, rerun with: --leak-check=full
+==315694==
+==315694== For lists of detected and suppressed errors, rerun with: -s
+==315694== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+
+Concise notice policy validation:
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -shared -o pidgin-meshcore.so src/plugin.c src/serial.c src/meshcore.c src/repeat.c -lpurple -lglib-2.0 -lcrypto
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -DMC_REPEAT_WINDOW_SECONDS=1 -o tests/test-core tests/test-core.c src/serial.c src/meshcore.c src/repeat.c -lpurple -lglib-2.0 -lcrypto -lutil -Wl,--wrap=write -Wl,--wrap=time
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -o tests/test-purple tests/test-purple.c -lpurple -lglib-2.0 -lcrypto -lutil
+./tests/test-core
+TAP version 14
+# random seed: R02S07d56542bd26ad0ab5c0334c4e16f760
+1..19
+# Start of core tests
+ok 1 /core/messaging
+# slow test /core/messaging executed in 3.26 secs
+ok 2 /core/ambiguous
+ok 3 /core/malformed
+ok 4 /core/unplug
+ok 5 /core/timeout-late
+# slow test /core/timeout-late executed in 11.94 secs
+ok 6 /core/busy
+ok 7 /core/unsupported
+ok 8 /core/queue-bound
+ok 9 /core/malformed-record
+ok 10 /core/contact-change
+# slow test /core/contact-change executed in 0.61 secs
+ok 11 /core/stale-initial-reply
+ok 12 /core/received-traffic-presence
+# slow test /core/received-traffic-presence executed in 0.89 secs
+ok 13 /core/ambiguous-traffic-presence
+ok 14 /core/ack-tracking-unavailable
+# End of core tests
+# Start of serial tests
+ok 15 /serial/partial-coalesced
+# End of serial tests
+# Start of repeat tests
+ok 16 /repeat/crypto-vectors
+ok 17 /repeat/feedback
+# slow test /repeat/feedback executed in 0.65 secs
+ok 18 /repeat/silent-expiry
+# slow test /repeat/silent-expiry executed in 1.61 secs
+ok 19 /repeat/channel-key-change
+# End of repeat tests
+./tests/test-purple
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[10:57:51.165231471] [334146]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[10:57:51.176914538] [334168]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+
+=== Review fixes: 2026-10-30 ===
+make test: 24 core/transport/crypto tests and headless libpurple integration passed.
+make memcheck: 0 errors; 0 definitely/indirectly/possibly lost bytes.
+Headless libpurple under Valgrind (--leak-check=no): 0 errors.
+GCC -fanalyzer -Wall -Wextra: no diagnostics.
+Installed shared library matches build; real Pidgin restarted cleanly and connected to the authorized USB companion; 69 buddies loaded.
+No live RF messages sent for this review. Binary queue, same-name channel and final-HUP regressions validated with simulators, not over the air.
+
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -shared -o pidgin-meshcore.so src/plugin.c src/serial.c src/meshcore.c src/repeat.c -lpurple -lglib-2.0 -lcrypto
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -DMC_REPEAT_WINDOW_SECONDS=1 -o tests/test-core tests/test-core.c src/serial.c src/meshcore.c src/repeat.c -lpurple -lglib-2.0 -lcrypto -lutil -Wl,--wrap=write -Wl,--wrap=time -Wl,--wrap=g_unix_fd_add
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -o tests/test-purple tests/test-purple.c -lpurple -lglib-2.0 -lcrypto -lutil
+./tests/test-core
+TAP version 14
+# random seed: R02Scccb0c11bd75600c398fad1d975e8bdc
+1..24
+# Start of core tests
+ok 1 /core/queued-datagram
+# slow test /core/queued-datagram executed in 0.53 secs
+ok 2 /core/malformed-datagram
+ok 3 /core/final-ack-hangup
+ok 4 /core/final-message-hangup
+ok 5 /core/messaging
+# slow test /core/messaging executed in 3.26 secs
+ok 6 /core/ambiguous
+ok 7 /core/malformed
+ok 8 /core/unplug
+ok 8 /core/timeout-late
+# slow test /core/timeout-late executed in 11.94 secs
+ok 9 /core/busy
+ok 10 /core/unsupported
+ok 11 /core/queue-bound
+ok 12 /core/malformed-record
+ok 13 /core/contact-change
+# slow test /core/contact-change executed in 0.61 secs
+ok 14 /core/stale-initial-reply
+ok 15 /core/received-traffic-presence
+# slow test /core/received-traffic-presence executed in 0.89 secs
+ok 16 /core/ambiguous-traffic-presence
+ok 17 /core/ack-tracking-unavailable
+# End of core tests
+# Start of serial tests
+ok 18 /serial/final-frames-hangup
+ok 19 /serial/partial-coalesced
+# End of serial tests
+# Start of repeat tests
+ok 20 /repeat/crypto-vectors
+ok 21 /repeat/feedback
+# slow test /repeat/feedback executed in 0.65 secs
+ok 22 /repeat/silent-expiry
+# slow test /repeat/silent-expiry executed in 1.62 secs
+ok 23 /repeat/channel-key-change
+# End of repeat tests
+./tests/test-purple
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[11:15:10.810613434] [346821]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[11:15:10.816234809] [346826]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+ok 9 /core/timeout-late
+# slow test /core/timeout-late executed in 11.94 secs
+ok 10 /core/busy
+ok 11 /core/unsupported
+ok 12 /core/queue-bound
+ok 13 /core/malformed-record
+ok 14 /core/contact-change
+# slow test /core/contact-change executed in 0.62 secs
+ok 15 /core/stale-initial-reply
+ok 16 /core/received-traffic-presence
+# slow test /core/received-traffic-presence executed in 0.89 secs
+ok 17 /core/ambiguous-traffic-presence
+ok 18 /core/ack-tracking-unavailable
+# End of core tests
+# Start of serial tests
+ok 19 /serial/final-frames-hangup
+ok 20 /serial/partial-coalesced
+# End of serial tests
+# Start of repeat tests
+ok 21 /repeat/crypto-vectors
+ok 22 /repeat/feedback
+# slow test /repeat/feedback executed in 0.67 secs
+ok 23 /repeat/silent-expiry
+# slow test /repeat/silent-expiry executed in 1.67 secs
+ok 24 /repeat/channel-key-change
+# End of repeat tests
+./tests/test-purple
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[11:15:21.523402802] [347068]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[11:15:21.533574120] [347096]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed
+libpurple integration passed
+
+valgrind --error-exitcode=1 --leak-check=full --errors-for-leak-kinds=definite ./tests/test-core
+==346886== Memcheck, a memory error detector
+==346886== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==346886== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==346886== Command: ./tests/test-core
+==346886==
+TAP version 14
+# random seed: R02Sa1da6d1667599c8829c21ece46d5893c
+1..24
+# Start of core tests
+ok 1 /core/queued-datagram
+# slow test /core/queued-datagram executed in 0.70 secs
+ok 2 /core/malformed-datagram
+ok 3 /core/final-ack-hangup
+# slow test /core/final-ack-hangup executed in 0.51 secs
+ok 4 /core/final-message-hangup
+# slow test /core/final-message-hangup executed in 0.52 secs
+ok 5 /core/messaging
+# slow test /core/messaging executed in 3.88 secs
+ok 6 /core/ambiguous
+# slow test /core/ambiguous executed in 0.52 secs
+ok 7 /core/malformed
+ok 8 /core/unplug
+ok 9 /core/timeout-late
+# slow test /core/timeout-late executed in 11.99 secs
+ok 10 /core/busy
+ok 11 /core/unsupported
+ok 12 /core/queue-bound
+ok 13 /core/malformed-record
+ok 14 /core/contact-change
+# slow test /core/contact-change executed in 0.68 secs
+ok 15 /core/stale-initial-reply
+ok 16 /core/received-traffic-presence
+# slow test /core/received-traffic-presence executed in 0.95 secs
+ok 17 /core/ambiguous-traffic-presence
+ok 18 /core/ack-tracking-unavailable
+# End of core tests
+# Start of serial tests
+ok 19 /serial/final-frames-hangup
+ok 20 /serial/partial-coalesced
+# End of serial tests
+# Start of repeat tests
+ok 21 /repeat/crypto-vectors
+ok 22 /repeat/feedback
+# slow test /repeat/feedback executed in 0.70 secs
+ok 23 /repeat/silent-expiry
+# slow test /repeat/silent-expiry executed in 1.67 secs
+ok 24 /repeat/channel-key-change
+# End of repeat tests
+==346886==
+==346886== HEAP SUMMARY:
+==346886==     in use at exit: 24,534 bytes in 33 blocks
+==346886==   total heap usage: 17,041 allocs, 17,008 frees, 1,388,479 bytes allocated
+==346886==
+==346886== LEAK SUMMARY:
+==346886==    definitely lost: 0 bytes in 0 blocks
+==346886==    indirectly lost: 0 bytes in 0 blocks
+==346886==      possibly lost: 0 bytes in 0 blocks
+==346886==    still reachable: 24,534 bytes in 33 blocks
+==346886==         suppressed: 0 bytes in 0 blocks
+==346886== Reachable blocks (those to which a pointer was found) are not shown.
+==346886== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==346886==
+==346886== For lists of detected and suppressed errors, rerun with: -s
+==346886== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+=== Validation: 2026-10-31 ===
+Clean build (make clean, make): passed without compiler warnings.
+make test: all 24 protocol/transport/crypto regression tests and headless libpurple integration passed. Generic chat icon retained.
+Production sources, build and test sources match the reviewed-fixes snapshot. Datagram draining, distinct channel identities/stale-window rejection, and final-data-before-HUP regressions preserved.
+No live RF testing performed.

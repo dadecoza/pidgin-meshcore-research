@@ -1,0 +1,50 @@
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -DMC_REPEAT_WINDOW_SECONDS=1 -o tests/test-core tests/test-core.c src/serial.c src/meshcore.c src/repeat.c -lpurple -lglib-2.0 -lcrypto -lutil -Wl,--wrap=write -Wl,--wrap=time -Wl,--wrap=g_unix_fd_add
+cc -I/usr/include/libpurple -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sysprof-6 -pthread -Isrc -O2 -g -std=c11 -Wall -Wextra -fPIC -o tests/test-purple tests/test-purple.c -lpurple -lglib-2.0 -lcrypto -lutil
+./tests/test-core
+TAP version 14
+# random seed: R02S8afb8e1e9641de2d8bdb5a17a53a8b9b
+1..24
+# Start of core tests
+ok 1 /core/queued-datagram
+# slow test /core/queued-datagram executed in 0.52 secs
+ok 2 /core/malformed-datagram
+ok 3 /core/final-ack-hangup
+ok 4 /core/final-message-hangup
+ok 5 /core/messaging
+# slow test /core/messaging executed in 3.28 secs
+ok 6 /core/ambiguous
+ok 7 /core/malformed
+ok 8 /core/unplug
+ok 9 /core/timeout-late
+# slow test /core/timeout-late executed in 11.94 secs
+ok 10 /core/busy
+ok 11 /core/unsupported
+ok 12 /core/queue-bound
+ok 13 /core/malformed-record
+ok 14 /core/contact-change
+# slow test /core/contact-change executed in 0.60 secs
+ok 15 /core/stale-initial-reply
+ok 16 /core/received-traffic-presence
+# slow test /core/received-traffic-presence executed in 0.89 secs
+ok 17 /core/ambiguous-traffic-presence
+ok 18 /core/ack-tracking-unavailable
+# End of core tests
+# Start of serial tests
+ok 19 /serial/final-frames-hangup
+ok 20 /serial/partial-coalesced
+# End of serial tests
+# Start of repeat tests
+ok 21 /repeat/crypto-vectors
+ok 22 /repeat/feedback
+# slow test /repeat/feedback executed in 0.65 secs
+ok 23 /repeat/silent-expiry
+# slow test /repeat/silent-expiry executed in 1.62 secs
+ok 24 /repeat/channel-key-change
+# End of repeat tests
+./tests/test-purple
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+[11:49:24.559280070] [366896]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+[11:49:24.563009700] [366912]  INFO Camera camera_manager.cpp:340 libcamera v0.7.0
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+MESA-INTEL: warning: Ivy Bridge Vulkan support is incomplete
+libpurple integration passed

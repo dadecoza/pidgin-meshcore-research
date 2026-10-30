@@ -1,0 +1,18 @@
+# Keep raw local evidence private; publish selected sanitized text only.
+*.so
+*.dll
+*.o
+*.deb
+*.zip
+*.tar.gz
+*.log
+*.core
+*.dump
+*.pcap
+*.pcapng
+core
+core.*
+__pycache__/
+.env
+.env.*
+.purple/

@@ -1,0 +1,20 @@
+--- a/pidgin/gtksound.c
++++ b/pidgin/gtksound.c
+@@ -368,11 +368,12 @@
+ static void
+ pidgin_sound_uninit(void)
+ {
+-#ifdef USE_GSTREAMER
+-	if (!gst_init_failed)
+-		gst_deinit();
+-#endif
+-
++	/* GStreamer is shared with libpurple's media manager and may still have
++	 * streaming tasks (including notification playback) at this point.
++	 * Global deinitialization waits for those tasks with the main loop
++	 * stopped and can deadlock. It is optional for a terminating process;
++	 * leave process-wide cleanup to the operating system.
++	 */
+ 	purple_signals_disconnect_by_handle(pidgin_sound_get_handle());
+ }
+ 

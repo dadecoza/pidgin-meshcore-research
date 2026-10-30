@@ -1,0 +1,24 @@
+Historical host-only results; plugin and firmware not applicable.
+Target: Ubuntu Pidgin source 1:2.14.14-1ubuntu3; baseline package unchanged,
+patched pidgin executable 1:2.14.14-1ubuntu3+meshcorefix2.
+Not rerun during publication. See ../REVISIONS.md for provenance limits.
+
+2026-10-30: Pidgin/GStreamer sound shutdown regression
+
+baseline-test.txt:
+REPRODUCED: WAV notification active; quit still blocked after 4.0s
+
+fixed-test-0.txt:
+PASS: active WAV notification; normal quit in 0.398s; delay=0
+
+fixed-test-1.txt:
+PASS: active WAV notification; normal quit in 0.058s; delay=0.05
+
+fixed-test-2.txt:
+PASS: active WAV notification; normal quit in 0.039s; delay=0.5
+
+installed-test.txt:
+PASS: active WAV notification; normal quit in 0.034s; delay=0.2
+
+real-profile-quit.txt:
+Real profile: connected with 69 contacts, normal quit in 0.235s. No forced termination.

@@ -1,0 +1,64 @@
+valgrind --error-exitcode=1 --leak-check=full --errors-for-leak-kinds=definite ./tests/test-core
+==367520== Memcheck, a memory error detector
+==367520== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==367520== Using Valgrind-3.26.0 and LibVEX; rerun with -h for copyright info
+==367520== Command: ./tests/test-core
+==367520==
+TAP version 14
+# random seed: R02Sd78446922b23ccf554f79922ec4cf54e
+1..24
+# Start of core tests
+ok 1 /core/queued-datagram
+# slow test /core/queued-datagram executed in 0.73 secs
+ok 2 /core/malformed-datagram
+ok 3 /core/final-ack-hangup
+# slow test /core/final-ack-hangup executed in 0.51 secs
+ok 4 /core/final-message-hangup
+# slow test /core/final-message-hangup executed in 0.50 secs
+ok 5 /core/messaging
+# slow test /core/messaging executed in 3.80 secs
+ok 6 /core/ambiguous
+ok 7 /core/malformed
+ok 8 /core/unplug
+ok 9 /core/timeout-late
+# slow test /core/timeout-late executed in 11.96 secs
+ok 10 /core/busy
+ok 11 /core/unsupported
+ok 12 /core/queue-bound
+ok 13 /core/malformed-record
+ok 14 /core/contact-change
+# slow test /core/contact-change executed in 0.67 secs
+ok 15 /core/stale-initial-reply
+ok 16 /core/received-traffic-presence
+# slow test /core/received-traffic-presence executed in 0.93 secs
+ok 17 /core/ambiguous-traffic-presence
+ok 18 /core/ack-tracking-unavailable
+# End of core tests
+# Start of serial tests
+ok 19 /serial/final-frames-hangup
+ok 20 /serial/partial-coalesced
+# End of serial tests
+# Start of repeat tests
+ok 21 /repeat/crypto-vectors
+ok 22 /repeat/feedback
+# slow test /repeat/feedback executed in 0.70 secs
+ok 23 /repeat/silent-expiry
+# slow test /repeat/silent-expiry executed in 1.66 secs
+ok 24 /repeat/channel-key-change
+# End of repeat tests
+==367520==
+==367520== HEAP SUMMARY:
+==367520==     in use at exit: 24,534 bytes in 33 blocks
+==367520==   total heap usage: 17,038 allocs, 17,005 frees, 1,388,278 bytes allocated
+==367520==
+==367520== LEAK SUMMARY:
+==367520==    definitely lost: 0 bytes in 0 blocks
+==367520==    indirectly lost: 0 bytes in 0 blocks
+==367520==      possibly lost: 0 bytes in 0 blocks
+==367520==    still reachable: 24,534 bytes in 33 blocks
+==367520==         suppressed: 0 bytes in 0 blocks
+==367520== Reachable blocks (those to which a pointer was found) are not shown.
+==367520== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==367520==
+==367520== For lists of detected and suppressed errors, rerun with: -s
+==367520== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

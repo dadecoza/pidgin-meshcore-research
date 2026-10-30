@@ -1,0 +1,12 @@
+--- a/libpurple/mediamanager.c
++++ b/libpurple/mediamanager.c
+@@ -2216,7 +2216,8 @@
+ 			"create-cb", gst_device_create_cb,
+ 			NULL);
+ 
+-	g_object_set_data(G_OBJECT(info), "gst-device", device);
++	g_object_set_data_full(G_OBJECT(info), "gst-device", g_object_ref(device),
++                              g_object_unref);
+ 
+ 	purple_media_manager_register_element(manager, info);
+ 
