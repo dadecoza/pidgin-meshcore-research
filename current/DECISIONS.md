@@ -11,7 +11,7 @@ See [REVISIONS.md](../REVISIONS.md) for other exact source references.
 | One active command plus bounded queue | Most responses lack request IDs. Concurrent requests or reusing a session after command timeout could misattribute late replies. |
 | No automatic resend after uncertain transmission | An interrupted write/reply may already have transmitted. Automatic retransmission can duplicate messages. |
 | Full-key buddies, unique-prefix lookup only | Aliases and truncated hashes are unsafe identities. Duplicate names never merge contacts. |
-| Session channel UUIDs and fresh chat IDs | Display-name conversations merged same-name channels; reused slot IDs allowed stale windows to target replacement channels. Reconnect intentionally separates histories. |
+| Stable companion/channel log identities; session UUIDs and fresh chat IDs for sends | Full companion public key and channel-key digest preserve history across reconnects and name/slot changes. Distinct keys isolate duplicate names. Session tokens and fresh IDs reject stale sends. Saved-chat aliases keep Pidgin title refresh readable. Legacy UUID logs are not guessed or merged. |
 | Public-key evidence for 24-hour availability | Unique alias matches, channel names and one-byte raw source hashes cannot identify a contact safely. Presence is recent-heard activity, not guaranteed online reachability. |
 | Observed channel speaker names | Channel text has no sender public key. Names are display labels; membership/authenticated sender lists would be invented. |
 | Exact packet-fingerprint repeat matching | Reject sender-name/text-only guesses. Channel keys are used transiently during read-only verification rather than retained for a dashboard or persistent decrypting cache. |

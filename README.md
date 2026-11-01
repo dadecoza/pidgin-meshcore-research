@@ -17,6 +17,13 @@ its installer, and this archive is not a release or an alternative plugin build.
 - [Publication validation](validation/PUBLICATION.md): current build, regressions,
   staged install/uninstall, memory checks, link checks and publication audit.
 
+Recent validated updates:
+
+- [Persistent room history and legacy UUID investigation](validation/2026-11-01-persistent-room-history.md).
+- [Readable room labels and actual Pidgin GUI evidence](validation/2026-11-01-room-labels.md).
+- [Shutdown presence sound regression](validation/2026-11-01-shutdown-presence.md).
+- [Single-character contact investigation and authorized advert follow-up](validation/2026-10-31-contact-name.md).
+
 ## Historical experiments and observations
 
 These records are dated development checkpoints; later entries can supersede
@@ -37,7 +44,7 @@ a fabricated Git commit.
 
 ## Evidence and privacy
 
-Only sanitized source, documentation, patches and selected text logs are stored.
+Only sanitized source, documentation, patches, selected text logs and synthetic GUI screenshots are stored.
 Device serial identifiers, real account labels and observed sender labels were
 removed or replaced with examples. RF test message bodies were omitted. No
 credentials, private keys, real channel secrets, conversations, personal Pidgin

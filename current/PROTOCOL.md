@@ -1,6 +1,6 @@
 # Protocol/source review
 
-Current implementation conclusions apply to plugin `fe078f29110a68f7ae326087ad2f8581d56130c3` and the
+Current implementation conclusions apply to plugin `8c12c3bf90caf7a1c72079d5688410108b9076f9` and the
 firmware source revision recorded in [REVISIONS.md](../REVISIONS.md). Historical
 notes are retained where explicitly dated; hardware firmware build identity is
 not inferred from its protocol number.
@@ -39,9 +39,12 @@ advertising, configuration or channel-writing commands are issued.
 Contacts (response 3) have the full key at offset 1, type at 33, 64 path bytes
 at 36, and 32 name bytes at 100 (148 bytes total). All contact types are indexed
 for collision detection; only chat contacts are imported. Channels (18) contain
-slot at 1, 32 name bytes at 2, and 16 secret bytes at 34. Only name, a one-way key fingerprint and a random
-session identity are retained. Slot IDs alone are never saved as room identities.
-Account-owned random identities also expire when the same device reconnects.
+slot at 1, 32 name bytes at 2, and 16 secret bytes at 34. The secret is not
+retained. The name, a one-way key fingerprint, a random session join token and
+a stable conversation digest are retained. The latter hashes a versioned domain,
+the full companion public key and channel key; slot and display name are excluded.
+See [persistent-history validation](../validation/2026-11-01-persistent-room-history.md)
+for the exact derivation and limits on associating legacy UUID logs.
 
 Direct send (2) is type, attempt, uint32 LE timestamp, six key-prefix bytes,
 then text (13 bytes of command overhead). Channel send (3) is type, slot,
@@ -96,7 +99,7 @@ command state machine instead of multiple loosely assigned callback slots.
 Timeout recovery deliberately fails closed: all queued operations are canceled,
 the fd and sources close, and no new command can consume the late response in
 that session. Re-enable to make a fresh connection. Ordinary transport loss uses
-bounded automatic reconnect, clears every channel identity and never resends
+bounded automatic reconnect, clears every session join token and never resends
 uncertain transmissions. Full contacts are loaded on reconnect, including alias
 changes. Removed buddies remain in Pidgin but cannot be sent to unless present
 in the current device snapshot. Unknown incoming prefixes generate a warning.
@@ -233,11 +236,15 @@ little-endian data type and length. Validate slot/path/length, discard unsupport
 binary content, and continue SYNC_NEXT_MESSAGE. No binary sender label updates
 presence. Layout verified against the pinned firmware's MyMesh::onChannelDataRecv.
 
-Pidgin's internal chat name is the session-scoped channel identity; the channel
-name is only the readable title. Each opened conversation receives a fresh chat
-ID, independent of its radio slot. Incoming messages, notices and observed users
-resolve the current identity; stale windows cannot send or leave a replacement
-conversation. Reconnecting intentionally creates a separate conversation/history.
+Pidgin's internal chat/log name is the persistent companion/channel digest;
+the companion's channel name is the readable alias and title. The plugin's
+find_blist_chat lookup resolves that digest to the saved-chat alias when Pidgin
+refreshes titles. Rejoining receives a fresh chat ID and session token independent
+of the radio slot. Stale IDs cannot send or leave a replacement conversation.
+Reconnecting the same companion/channel retains conversation and log identity.
+Intentional account close leaves presence reset to libpurple's normal cleanup,
+avoiding redundant individual buddy sign-off sounds; unexpected serial loss and
+ordinary recent-heard expiry still publish offline updates.
 
 Serial HUP/error handling drains successfully read bytes before reporting loss.
 Reads are bounded to eight 512-byte chunks per GLib dispatch and continue on the

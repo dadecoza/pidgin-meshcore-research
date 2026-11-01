@@ -1,8 +1,18 @@
 # Revision ledger
 
+## 2026-11-01 follow-up publication
+
+Current plugin revision: [`8c12c3bf90caf7a1c72079d5688410108b9076f9`](https://github.com/dadecoza/pidgin-meshcore/tree/8c12c3bf90caf7a1c72079d5688410108b9076f9). This contains persistent companion/channel log identities, readable saved-chat aliases and title refresh, silent intentional-close presence cleanup, and expanded libpurple regressions including single-character contact aliases.
+
+`make test` passed all 24 core regressions plus expanded headless integration against real libpurple. Actual Pidgin GUI checks used a private profile and PTY simulator: readable tabs/title/header across reconnect, slot/name changes and incoming messages; reopening; and View Log retrieval of a prior session. No RF testing was performed for these fixes. The user subsequently confirmed room presentation and shutdown behavior in their live installation; that report is not an independently recorded hardware delivery test.
+
+Dated validation records preserve exact intermediate working-tree hashes. The final committed source/test bytes match the latest shutdown record plus the unchanged meshcore.c/meshcore.h hashes in the persistent-history record. The maintained README was updated for publication. The earlier single-character contact investigation separately records explicitly authorized advert reception, with unknown flashed firmware revisions; it does not validate room message delivery.
+
+The original publication and upstream revision ledger below remain historical evidence. Upstream source references are unchanged.
+
 ## Published implementation and source references
 
-Current implementation claims and publication tests apply to maintained plugin
+Original publication claims and tests apply to maintained plugin
 commit [`fe078f29110a68f7ae326087ad2f8581d56130c3`](https://github.com/dadecoza/pidgin-meshcore/tree/fe078f29110a68f7ae326087ad2f8581d56130c3).
 The plugin was first placed under Git during this publication. It has no earlier
 Git history. Production C/header bytes were compared with the private pre-tidy
